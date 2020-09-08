@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pendul</title>
+    <script src="./css-et-js/jquery-3.5.1.min.js"></script>
+    <script src="./css-et-js/popper.min.js"></script>
+    <script src="./css-et-js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css-et-js/bootstrap.min.css">
+    <link rel="stylesheet" href="pendal.css">
+    <meta name="description" content="jeu de pendu">
+</head>
+<body onkeypress="cheklav(event)">
+    <div class="container">
+        <div class="row my-5"></div>
+        <div class="row">
+            <div class="col-md">
+                <h1>jeu de pendu</h1>
+                <p class="row my-5 txt">entre une lettre grace au clavier ci dessous. si c'est la bonne, elle va s'afficher en bas. sinon, billy vas mourir.</p>
+                <div class="row caseClav ml-md-4"></div>
+                <button type="button" onclick="window.location.href='./pendul.html'" class="btn m-md-5 btn-dark">New Party</button>
+            </div>
+            <div class="col-md-4">
+                <img id="img" src="./images/pendu_0.jpg" alt="0">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="name"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    function cheklav(event){//transfer l'input du clavier à input()
+        console.log(event)
+        if(event.key!="Enter"&&event.code!="Space")input(event.key);
+    }
+    var touched=[]
+    var rep=""
+    var liste=[];
+    var lose=0;
+    var won=0;
+    var nom = 'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/';//on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
+    var http = new XMLHttpRequest();//ici on requette le web service
+    http.open('GET', nom);
+    http.responseType = 'json';
+    http.send();
+    http.onload = function() {// ici on va utiliser ce qu'on a recu du web service
+        liste = http.response;//ici la variable avec tout les noms
+        difficulte=prompt("choisi un niveau de dificulté entre 1 et 3");//ici on applique le niveaux de dificulté
+        if (difficulte==1){//ici un nom de maximum 3 lettres
+            console.log("niveau de difficulté : "+difficulte);
+            rep=liste[rnd(liste.length)]; //on choisi un nom random
+            rep=rep.toLowerCase();// et on transforme les majs en minuscules
+            while(rep.length>3){//ici on boucle jusqu'a que l'on ai trouvé un nom avec le bon nombre de lettre
+            rep=liste[rnd(liste.length)]; 
+            rep=rep.toLowerCase();
+        }
+        }
+        if (difficulte==2){//ici un nom de maximum 5 lettres
+            console.log("niveau de difficulté : "+difficulte);
+            rep=liste[rnd(liste.length)]; 
+            rep=rep.toLowerCase();
+            while(rep.length>5){
+            rep=liste[rnd(liste.length)]; 
+            rep=rep.toLowerCase();}
+        }
+        if (difficulte>=3){//ici pas de limite de longueur de nom
+            console.log("niveau de difficulté : "+difficulte);
+            rep=liste[rnd(liste.length)]; 
+            rep=rep.toLowerCase();
+        }
+        if (!difficulte){//si il n'y a pas de difficulté defini la difficulte par defaut est de niveau 3
+            console.log("niveau de difficulté : "+difficulte);
+            rep=liste[rnd(liste.length)]; 
+            rep=rep.toLowerCase();
+        }
+        console.log(rep);    //ici il dit la reponse ds la console (c'est une developer key qui permet de verifier si le code fonctionne dans tout les senses)
+        prep(rep.length);
+        for(var i =0;i<rep.length;i++){//ici on éppele le nom dans un tableau pour vérifier les lettre ds chek()
+            rap.push(rep[i])
+        }
+        for(var i=0;i<rap.length;i++){//ici on noralise les caractère spéciale (ex : ç = c | î = i)
+            if(rap[i]=="é"||rap[i]=="è"||rap[i]=="ê"||rap[i]=="ë")rap[i]="e";
+            if(rap[i]=="î"||rap[i]=="ï")rap[i]="i";
+            if(rap[i]=="ç")rap[i]="c";
+            console.log("lettres") ;         //pour dire le nombre de lettre ds la console
+        }
+    }
+    var rap=[]
+    function rnd(n){//retourne un nombre randome en fonction de la variable d'entrer
+        return Math.round(Math.random()*n);
+    }
+    function prep(nbn){//prépare l'html en ajoutant les lettre du clavier visuel et les emplacement pour les lettres du nom a deviner
+        var n=document.getElementById("name");
+        for(var i=0;i<nbn;i++){//les lettres du nom a deviner
+            n.innerHTML+="<div class='n"+i+" lert'>_</div>"
+        }
+        var letr="abcdefghijklmnopqrstuvwxyz"
+        var style="background-color:rgb(210,210,210);"
+        for(var i=0;i<letr.length;i++){//les lettre du clavier visuel
+            n=document.getElementsByClassName("caseClav")[0]
+            n.innerHTML+="<button onclick=input('"+letr[i]+"') id='"+letr[i]+"' style="+style+" class='clav'>"+letr[i]+"</button>"
+        }
+    }
+    function input(l){//verifi si la lettre est in charactere spécial, si oui la change en charactere normale et si elle a deja été entré et l'envoie à chek()
+        if(l=="é"||l=="è"||l=="ê"||l=="ë"){l="e";}
+        if(l=="î"||l=="ï"){l="i";}
+        if(l=="ç"){l="c";}
+        var tt=true;
+        for(var i=0;i<touched.length;i++){
+            if(touched[i]==l)tt=false;
+        }
+        if(tt){
+            touched.push(l[0]);
+            console.log(touched)
+            chek(l[0]);}
+    }
+    function chek(l){//verifi si la lettre d'entrée est dans le mot
+        var from=true
+        for(var i=0;i<rap.length;i++){
+
+            if(l==rap[i]){// si la lettre est bonne
+                var locate=document.getElementsByClassName("n"+i);
+                locate[0].style.backgroundColor="green"
+                locate[0].innerHTML=l
+                var calv=document.getElementById(l);
+                calv.style.backgroundColor="green"
+                from=false;
+                won+=1;
+            }
+        }
+        if(from){// si ce n'est pas la bonne lettre
+            lose+=1;
+            var d=document.getElementById("img");
+            d.src="./images/pendu_"+lose+".jpg"
+            var calv=document.getElementById(l);
+            console.log(l);
+            calv.style.backgroundColor="red"
+        }
+        var doc=document.getElementsByClassName("lert");
+        for(var i =0;i<doc.length;i++){
+            if(doc[i].style.backgroundColor=="green");
+        }
+        if(won===rap.length){//si tu  gagne
+            setTimeout(function(){ alert("bravo tu a deviné le prénom de "+rep);window.location.href='./pendul.html'; }, 500);  
+        }
+        if(lose==9){//si tu perd
+            setTimeout(function(){ alert("perdu ! appuie sur ok pour recommencer.");window.location.href='./pendul.html'; }, 500);
+        }
+    }
+</script>
+</html>

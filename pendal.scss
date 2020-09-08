@@ -1,0 +1,35 @@
+%border{
+    border-radius: 15px;
+}
+%border5{
+    border-radius: 5px;
+}
+.clav{
+    margin:10px;
+    width: 45px;
+    height: 40px;
+    @extend %border5
+}
+.caseClav{
+    width: 75%;
+    padding: 10px;
+    border: rgb(34, 34, 34) 2px solid;
+    background-color: rgba(0, 0, 255, 0.4);
+    @extend %border
+}
+.lert{
+    background-color: red;
+    margin : 5px;
+    display: inline-block;
+    width: 25px;
+    text-align: center;
+    border: 2px rgb(39, 39, 39) solid;
+    transition: 0.5s;
+    @extend %border5
+}
+.txt{
+    width: 85%;
+}
+#img{
+    @extend %border
+}

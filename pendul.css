@@ -1,0 +1,36 @@
+.caseClav, #img {
+  border-radius: 15px;
+}
+
+.clav, .lert {
+  border-radius: 5px;
+}
+
+.clav {
+  margin: 10px;
+  width: 45px;
+  height: 40px;
+}
+
+.caseClav {
+  width: 75%;
+  padding: 10px;
+  border: black 1px solid;
+  background-color: #3232ff;
+}
+
+.lert {
+  background-color: red;
+  margin: 5px;
+  display: inline-block;
+  width: 25px;
+  text-align: center;
+  border: 1px black solid;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.txt {
+  width: 85%;
+}
+/*# sourceMappingURL=pendul.css.map */
