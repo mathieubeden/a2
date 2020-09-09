@@ -29,7 +29,11 @@
 }
 .txt{
     width: 85%;
+    font-size: 130%;
 }
 #img{
     @extend %border
+}
+#dupli{
+    font-size: 130%;
 }
