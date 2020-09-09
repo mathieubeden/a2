@@ -18,12 +18,12 @@
         <div class="row">
             <div class="col-md">
                 <h1>jeu de pendu</h1>
-                <p class="row my-5 txt">entre une lettre grace au clavier ci dessous. si c'est la bonne, elle va s'afficher en bas. sinon, billy vas mourir.</p>
-                <div class="row caseClav ml-md-4"></div>
-                <button type="button" onclick="window.location.href='./pendul.html'" class="btn m-md-5 btn-dark">New Party</button>
+                <p class="row m-3 txt">entre une lettre grace au clavier ci dessous. si c'est la bonne, elle va s'afficher en bas. sinon, billy vas mourir.</p>
+                <div class="row caseClav ml-3"></div>
+                <button type="button" onclick="window.location.href='./pendul.html'" class="btn m-3 btn-dark">New Party</button>
             </div>
-            <div class="col-md-4">
-                <img id="img" src="./images/pendu_0.jpg" alt="0">
+            <div class="col-lg-4">
+                <img id="img" class="m-sm-3" src="./images/pendu_0.jpg" alt="0">
             </div>
         </div>
         <div class="row">
@@ -37,13 +37,18 @@
 </body>
 <script>
     function cheklav(event){//transfer l'input du clavier à input()
-        if(event.key!="Enter"&&event.code!="Space")input(event.key);
+        for (var i=0;i<letr.length;i++){
+            if(event.key==letr[i]||event.key=="é"||event.key=="è"||event.key=="ç"||event.key=="à"||event.key=="î"||event.key=="ï")input(event.key);
+        }
     }
-    var touched=[]
-    var rep=""
+    var touched=[];
+    var rep="";
     var liste=[];
+    var rap=[];
     var lose=0;
     var won=0;
+    
+    var letr="abcdefghijklmnopqrstuvwxyz";
     var nom = 'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/';//on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
     var http = new XMLHttpRequest();//ici on crée une requette de web service
     http.open('GET', nom);
@@ -91,7 +96,6 @@
             console.log("lettres") ;         //pour dire le nombre de lettre ds la console
         }
     }
-    var rap=[]
     function rnd(n){//retourne un nombre randome en fonction de la variable d'entrer
         return Math.round(Math.random()*n);
     }
@@ -100,7 +104,6 @@
         for(var i=0;i<nbn;i++){//les lettres du nom a deviner
             n.innerHTML+="<div class='n"+i+" lert'>_</div>"
         }
-        var letr="abcdefghijklmnopqrstuvwxyz"
         var style="background-color:rgb(210,210,210);"
         for(var i=0;i<letr.length;i++){//les lettre du clavier visuel
             n=document.getElementsByClassName("caseClav")[0]
@@ -111,6 +114,7 @@
         if(l=="é"||l=="è"||l=="ê"||l=="ë"){l="e";}
         if(l=="î"||l=="ï"){l="i";}
         if(l=="ç"){l="c";}
+        if(l=="à"){l="a";}
         var tt=true;
         for(var i=0;i<touched.length;i++){
             if(touched[i]==l)tt=false;
@@ -118,7 +122,8 @@
         if(tt){
             touched.push(l[0]);
             console.log(touched)
-            chek(l[0]);}
+            chek(l[0]);
+        }
     }
     function chek(l){//verifi si la lettre d'entrée est dans le mot
         var from=true
