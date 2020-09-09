@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css-et-js/bootstrap.min.css">
     <link rel="stylesheet" href="pendal.css">
     <meta name="description" content="jeu de pendu">
+    <link rel=preconnect href="https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/">
 </head>
 <body onkeypress="cheklav(event)">
     <div class="container">
@@ -36,7 +37,6 @@
 </body>
 <script>
     function cheklav(event){//transfer l'input du clavier à input()
-        console.log(event)
         if(event.key!="Enter"&&event.code!="Space")input(event.key);
     }
     var touched=[]
@@ -45,7 +45,7 @@
     var lose=0;
     var won=0;
     var nom = 'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/';//on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
-    var http = new XMLHttpRequest();//ici on requette le web service
+    var http = new XMLHttpRequest();//ici on crée une requette de web service
     http.open('GET', nom);
     http.responseType = 'json';
     http.send();
@@ -126,10 +126,10 @@
 
             if(l==rap[i]){// si la lettre est bonne
                 var locate=document.getElementsByClassName("n"+i);
-                locate[0].style.backgroundColor="green"
+                locate[0].style.backgroundColor="#66ff99"
                 locate[0].innerHTML=l
                 var calv=document.getElementById(l);
-                calv.style.backgroundColor="green"
+                calv.style.backgroundColor="#66FF99"
                 from=false;
                 won+=1;
             }
@@ -140,11 +140,11 @@
             d.src="./images/pendu_"+lose+".jpg"
             var calv=document.getElementById(l);
             console.log(l);
-            calv.style.backgroundColor="red"
+            calv.style.backgroundColor="#FF3333"
         }
         var doc=document.getElementsByClassName("lert");
         for(var i =0;i<doc.length;i++){
-            if(doc[i].style.backgroundColor=="green");
+            if(doc[i].style.backgroundColor=="#66FF99");
         }
         if(won===rap.length){//si tu  gagne
             setTimeout(function(){ alert("bravo tu a deviné le prénom de "+rep);window.location.href='./pendul.html'; }, 500);  
