@@ -105,8 +105,8 @@
             }
         }, 1000);
     }
-    function rnd(n){//retourne un nombre randome en fonction de la variable d'entrer
-        return Math.round(Math.random()*n);
+    function rnd(n){//retourne un nombre random en fonction de la variable d'entrer
+        return Math.floor(Math.random()*n);
     }
     function prep(nbn){//prépare l'html en ajoutant les lettre du clavier visuel et les emplacement pour les lettres du nom a deviner
         var n=document.getElementById("name");
@@ -155,7 +155,7 @@
             var calv=document.getElementById(l);
             console.log(l);
             calv.style.backgroundColor="#FF3333"
-            document.getElementById("dupli").innerHTML+=" "+l;
+            document.getElementById("dupli").innerHTML+=" !"+l;
         }
         var doc=document.getElementsByClassName("lert");
         for(var i =0;i<doc.length;i++){
@@ -165,7 +165,7 @@
             setTimeout(function(){ alert("bravo tu a deviné le prénom de "+rep);window.location.href='./pendul.html'; }, 500);  
         }
         if(lose==9){//si tu perd
-            setTimeout(function(){ alert("perdu ! appuie sur ok pour recommencer.");window.location.href='./pendul.html'; }, 500);
+            setTimeout(function(){ alert("perdu ! appuie sur ok pour recommencer.");window.location.href='./pendul.html'; }, 1000);
         }
     }
     
