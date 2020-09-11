@@ -10,24 +10,25 @@
   margin: 10px;
   width: 45px;
   height: 40px;
+  background-color: #8af840 !important;
 }
 
 .caseClav {
   width: 75%;
   padding: 10px;
   border: #222222 2px solid;
-  background-color: rgba(0, 0, 255, 0.4);
+  background-color: blue;
 }
 
 .lert {
-  background-color: #FF3333;
+  background-color: #ff5252;
   margin: 5px;
   display: inline-block;
   width: 25px;
   text-align: center;
-  border: 2px #272727 solid;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
+  border: 2px #3b3b3b solid;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .txt {
@@ -36,6 +37,10 @@
 }
 
 #dupli {
-  font-size: 130%;
+  font-size: 120%;
+}
+
+body {
+  background-color: #29b629;
 }
 /*# sourceMappingURL=pendal.css.map */

@@ -8,23 +8,24 @@
     margin:10px;
     width: 45px;
     height: 40px;
+    background-color: rgb(138, 248, 64) !important;
     @extend %border5
 }
 .caseClav{
     width: 75%;
     padding: 10px;
     border: rgb(34, 34, 34) 2px solid;
-    background-color: rgba(0, 0, 255, 0.4);
+    background-color: rgb(0, 0, 255);
     @extend %border
 }
 .lert{
-    background-color: #FF3333;
+    background-color: #ff5252;
     margin : 5px;
     display: inline-block;
     width: 25px;
     text-align: center;
-    border: 2px rgb(39, 39, 39) solid;
-    transition: 0.6s;
+    border: 2px rgb(59, 59, 59) solid;
+    transition: 0.3s;
     @extend %border5
 }
 .txt{
@@ -35,5 +36,8 @@
     @extend %border
 }
 #dupli{
-    font-size: 130%;
+    font-size: 120%;
+}
+body{
+    background-color: rgb(41, 182, 41);
 }
