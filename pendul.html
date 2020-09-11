@@ -93,7 +93,7 @@
         for(var i=0;i<rap.length;i++){//ici on noralise les caractère spéciale (ex : ç = c | î = i)
             if(rap[i]=="é"||rap[i]=="è"||rap[i]=="ê"||rap[i]=="ë")rap[i]="e";
             if(rap[i]=="î"||rap[i]=="ï")rap[i]="i";
-            if(rap[i]=="ç")rap[i]="c";       //pour dire le nombre de lettre ds la console
+            if(rap[i]=="ç")rap[i]="c";       
         }
         setTimeout(function(){//verifi si le nom as un tiret
             var dejf=false
@@ -131,7 +131,6 @@
         }
         if(tt){
             touched.push(l[0]);
-            console.log(touched)
             chek(l[0]);
         }
     }
@@ -143,8 +142,8 @@
                 locate[0].style.backgroundColor="#66ff99"
                 locate[0].innerHTML=l
                 var calv=document.getElementById(l);
-                if(clav)calv.style.backgroundColor="#66FF99";
-                document.getElementById("dupli").innerHTML+=" "+l;
+                calv.style.backgroundColor="#66FF99";
+                if(document.getElementById("dupli")!=l)document.getElementById("dupli").innerHTML+=" "+l;
                 from=false;
                 won+=1;
             }
@@ -156,7 +155,7 @@
             var calv=document.getElementById(l);
             console.log(l);
             calv.style.backgroundColor="#FF3333"
-            document.getElementById("dupli").innerHTML+=" !"+l;
+            document.getElementById("dupli").innerHTML+=" "+l;
         }
         var doc=document.getElementsByClassName("lert");
         for(var i =0;i<doc.length;i++){
