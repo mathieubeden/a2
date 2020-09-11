@@ -42,10 +42,10 @@
             if(event.key==letr[i]||event.key=="é"||event.key=="è"||event.key=="ù"||event.key=="ç"||event.key=="à"||event.key=="î"||event.key=="ï")input(event.key);
         }
     }
-    var touched=[];
-    var rep="";
-    var liste=[];
-    var rap=[];
+    var touched=[];//liste de lettre déja tapé
+    var rep="";///la reponse
+    var liste=[];//liste des noms
+    var rap=[];//tableau des letres du nom
     var lose=0;
     var won=0;
     var letr="abcdefghijklmnopqrstuvwxyz";
@@ -80,7 +80,7 @@
             rep=liste[rnd(liste.length)]; 
             rep=rep.toLowerCase();
         }
-        if (!difficulte){//si il n'y a pas de difficulté defini la difficulte par defaut est de niveau 3
+        else{//si il n'y a pas de difficulté defini la difficulte par defaut est de niveau 3
             console.log("niveau de difficulté : virilus (>:-c}");
             rep=liste[rnd(liste.length)]; 
             rep=rep.toLowerCase();
