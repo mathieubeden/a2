@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1024, initial-scale=1.0">
@@ -10,18 +11,23 @@
     <link rel="stylesheet" href="./css-et-js/bootstrap.min.css">
     <link rel="stylesheet" href="pendal.css">
     <meta name="description" content="jeu de pendu">
-    <link rel=preconnect href="https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/">
+    <link rel=preconnect
+        href="https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/">
     <link rel="icon" type="image/jpg" href="favicon.jpg">
 </head>
+
 <body onkeypress="cheklav(event)">
     <div class="container">
         <div class="row my-5"></div>
         <div class="row">
             <div class="col-md">
                 <h1>jeu de pendu</h1>
-                <p class="row m-3 txt">entre une lettre graçe au clavier ci dessous. si c'est la bonne, elle va s'afficher en bas. sinon, billy vas mourir. tu peut aussi taper les lettres avec le clavier de ton ordi.</p>
+                <p class="row m-3 txt">entre une lettre graçe au clavier ci dessous. si c'est la bonne, elle va
+                    s'afficher en bas. sinon, billy vas mourir. tu peut aussi taper les lettres avec le clavier de ton
+                    ordi.</p>
                 <div class="row caseClav ml-3"></div>
-                <button type="button" onclick="window.location.href='./pendul.html'" class="btn m-3 btn-dark">New Party</button>
+                <button type="button" onclick="window.location.href='./pendul.html'" class="btn m-3 btn-dark">New
+                    Party</button>
             </div>
             <div class="col-lg-4">
                 <img id="img" class="m-sm-3" src="./images/pendu_0.jpg" alt="0">
@@ -38,137 +44,169 @@
 
 </body>
 <script>
-    function cheklav(event){//traite l'input du clavier et l'envoi à input()
-        for (var i=0;i<letr.length;i++){
-            if(event.key==letr[i]||event.key=="é"||event.key=="è"||event.key=="ù"||event.key=="ç"||event.key=="à"||event.key=="î"||event.key=="ï")input(event.key);
+    function cheklav(event) { //traite l'input du clavier et l'envoi à input()
+        for (var i = 0; i < letr.length; i++) {
+            if (event.key == letr[i] || event.key == "é" || event.key == "è" || event.key == "ù" || event.key == "ç" ||
+                event.key == "à" || event.key == "î" || event.key == "ï") input(event.key);
         }
     }
-    var touched=[];//liste de lettre déja tapé
-    var rep="";///la reponse
-    var liste=[];//liste des noms
-    var rap=[];//tableau des letres du nom
-    var lose=0;
-    var won=0;
-    var letr="abcdefghijklmnopqrstuvwxyz";
-    var nom = 'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/';//on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
-    var http = new XMLHttpRequest();//ici on crée une requette de web service
+    var touched = []; //liste de lettre déja tapé
+    var rep = ""; ///la reponse
+    var liste = []; //liste des noms
+    var rap = []; //tableau des letres du nom
+    var lose = 0;
+    var won = 0;
+    var letr = "abcdefghijklmnopqrstuvwxyz";
+    var nom =
+    'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/'; //on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
+    var http = new XMLHttpRequest(); //ici on crée une requette de web service
     http.open('GET', nom);
-    http.responseType = 'json';//on lui demande du json en reponse 
+    http.responseType = 'json'; //on lui demande du json en reponse 
     http.send();
-    http.onload = function() {// ici on va utiliser ce qu'on a recu du web service
-        liste = http.response;//ici la variable avec tout les noms
-        difficulte=prompt("choisi un niveau de dificulté entre 1 et 3");//ici on demande le niveaux de dificulté entre 1 et 3 (facile, moyen et difficile)
-        if (difficulte==1){//ici un nom de maximum 3 lettres
+    http.onload = function () { // ici on va utiliser ce qu'on a recu du web service
+        liste = http.response; //ici la variable avec tout les noms
+        difficulte = prompt(
+        "choisi un niveau de dificulté entre 1 et 3"); //ici on demande le niveaux de dificulté entre 1 et 3 (facile, moyen et difficile)
+        if (difficulte == 1) { //ici un nom de maximum 3 lettres
             console.log("niveau de difficulté : jean-kévin (ovo)");
-            rep=liste[rnd(liste.length)]; //on choisi un nom random
-            rep=rep.toLowerCase();// et on transforme les majs en minuscules
-            while(rep.length>3){//ici on boucle jusqu'a que l'on ai trouvé un nom avec le bon nombre de lettre
-                rep=liste[rnd(liste.length)]; 
-                rep=rep.toLowerCase();
+            rep = liste[rnd(liste.length)]; //on choisi un nom random
+            rep = rep.toLowerCase(); // et on transforme les majs en minuscules
+            while (rep.length > 3) { //ici on boucle jusqu'a que l'on ai trouvé un nom avec le bon nombre de lettre
+                rep = liste[rnd(liste.length)];
+                rep = rep.toLowerCase();
             }
         }
-        if (difficulte==2){//ici un nom de maximum 5 lettres
+        if (difficulte == 2) { //ici un nom de maximum 5 lettres
             console.log("niveau de difficulté : billy (-_-)");
-            rep=liste[rnd(liste.length)]; 
-            rep=rep.toLowerCase();
-            while(rep.length>5){
-                rep=liste[rnd(liste.length)]; 
-                rep=rep.toLowerCase();
+            rep = liste[rnd(liste.length)];
+            rep = rep.toLowerCase();
+            while (rep.length > 5) {
+                rep = liste[rnd(liste.length)];
+                rep = rep.toLowerCase();
             }
         }
-        if (difficulte>=3){//ici pas de limite de longueur de nom
+        if (difficulte >= 3) { //ici pas de limite de longueur de nom
             console.log("niveau de difficulté : virilus (>:-c}");
-            rep=liste[rnd(liste.length)]; 
-            rep=rep.toLowerCase();
-        }
-        else{//si il n'y a pas de difficulté defini la difficulte par defaut est de niveau 3
+            rep = liste[rnd(liste.length)];
+            rep = rep.toLowerCase();
+        } else { //si il n'y a pas de difficulté defini la difficulte par defaut est de niveau 3
             console.log("niveau de difficulté : virilus (>:-c}");
-            rep=liste[rnd(liste.length)]; 
-            rep=rep.toLowerCase();
+            rep = liste[rnd(liste.length)];
+            rep = rep.toLowerCase();
         }
-        console.log(rep);    //ici on ecrit la reponse dans la console (c'est une developer key qui permet de verifier si le code fonctionne dans tout les sens)
+        console.log(
+        rep); //ici on ecrit la reponse dans la console (c'est une developer key qui permet de verifier si le code fonctionne dans tout les sens)
         prep(rep.length);
-        for(var i =0;i<rep.length;i++){//ici on éppele le nom dans un tableau pour vérifier les lettre ds chek()
+        for (var i = 0; i < rep
+            .length; i++) { //ici on éppele le nom dans un tableau pour vérifier les lettre ds chek()
             rap.push(rep[i])
         }
-        for(var i=0;i<rap.length;i++){//ici on noralise les caractère spéciale (ex : ç = c | î = i)
-            if(rap[i]=="é"||rap[i]=="è"||rap[i]=="ê"||rap[i]=="ë")rap[i]="e";
-            if(rap[i]=="î"||rap[i]=="ï")rap[i]="i";
-            if(rap[i]=="ç")rap[i]="c";       
+        for (var i = 0; i < rap.length; i++) { //ici on noralise les caractère spéciale (ex : ç = c | î = i)
+            if (rap[i] == "é" || rap[i] == "è" || rap[i] == "ê" || rap[i] == "ë") rap[i] = "e";
+            if (rap[i] == "î" || rap[i] == "ï") rap[i] = "i";
+            if (rap[i] == "ç") rap[i] = "c";
         }
-        setTimeout(function(){//verifi si le nom as un tiret
-            var dejf=false
-            if(!dejf){
-                for(var i=0;i<rep.length;i++){
-                    if(rep[i]==="-"&&!dejf){chek("-");console.log("il y a un tiret et "+rep.length+" lettres");dejf=true}
-                    else if(!dejf) {console.log("lettres");}
+        setTimeout(function () { //verifi si le nom as un tiret
+            var dejf = false
+            if (!dejf) {
+                for (var i = 0; i < rep.length; i++) {
+                    if (rep[i] === "-" && !dejf) {
+                        chek("-");
+                        console.log("il y a un tiret et " + rep.length + " lettres");
+                        dejf = true
+                    } else if (!dejf) {
+                        console.log("lettres");
+                    }
                 }
             }
         }, 1000);
     }
-    function rnd(n){//retourne un nombre random en fonction de la variable d'entrer
-        return Math.floor(Math.random()*n);
+
+    function rnd(n) { //retourne un nombre random en fonction de la variable d'entrer
+        return Math.floor(Math.random() * n);
     }
-    function prep(nbn){//prépare l'html en ajoutant les lettre du clavier visuel et les emplacement pour les lettres du nom a deviner
-        var n=document.getElementById("name");
-        for(var i=0;i<nbn;i++){//les lettres du nom a deviner
-            n.innerHTML+="<div class='n"+i+" lert'>_</div>"
+
+    function prep(
+    nbn) { //prépare l'html en ajoutant les lettre du clavier visuel et les emplacement pour les lettres du nom a deviner
+        var n = document.getElementById("name");
+        for (var i = 0; i < nbn; i++) { //les lettres du nom a deviner
+            n.innerHTML += "<div class='n" + i + " lert'>_</div>"
         }
-        var style="background-color:rgb(210,210,210);"
-        for(var i=0;i<letr.length;i++){//les lettre du clavier visuel
-            n=document.getElementsByClassName("caseClav")[0]
-            n.innerHTML+="<button onclick=input('"+letr[i]+"') id='"+letr[i]+"' style="+style+" class='clav'>"+letr[i]+"</button>"
+        var style = "background-color:rgb(210,210,210);"
+        for (var i = 0; i < letr.length; i++) { //les lettre du clavier visuel
+            n = document.getElementsByClassName("caseClav")[0]
+            n.innerHTML += "<button onclick=input('" + letr[i] + "') id='" + letr[i] + "' style=" + style +
+                " class='clav'>" + letr[i] + "</button>"
         }
     }
-    function input(l){//verifi si la lettre est in charactere spécial, si oui la change en charactere normale et si elle a deja été entré et l'envoie à chek()
-        if(l=="é"||l=="è"||l=="ê"||l=="ë"){l="e";}
-        if(l=="î"||l=="ï"){l="i";}
-        if(l=="ç"){l="c";}
-        if(l=="à"){l="a";}
-        if(l=="ù"){l="u";}
-        var tt=true;
-        for(var i=0;i<touched.length;i++){
-            if(touched[i]==l)tt=false;
+
+    function input(
+    l) { //verifi si la lettre est in charactere spécial, si oui la change en charactere normale et si elle a deja été entré et l'envoie à chek()
+        if (l == "é" || l == "è" || l == "ê" || l == "ë") {
+            l = "e";
         }
-        if(tt){
+        if (l == "î" || l == "ï") {
+            l = "i";
+        }
+        if (l == "ç") {
+            l = "c";
+        }
+        if (l == "à") {
+            l = "a";
+        }
+        if (l == "ù") {
+            l = "u";
+        }
+        var tt = true;
+        for (var i = 0; i < touched.length; i++) {
+            if (touched[i] == l) tt = false;
+        }
+        if (tt) {
             touched.push(l[0]);
             chek(l[0]);
         }
     }
-    function chek(l){//verifi si la lettre d'entrée est dans le mot
-        var from=true
-        for(var i=0;i<rap.length;i++){
-            if(l==rap[i]){// si la lettre est bonne
-                var locate=document.getElementsByClassName("n"+i);
-                locate[0].style.backgroundColor="#66ff99"
-                locate[0].innerHTML=l
-                var calv=document.getElementById(l);
-                calv.style.backgroundColor="#66FF99";
-                if(document.getElementById("dupli")!=l)document.getElementById("dupli").innerHTML+=" "+l;
-                from=false;
-                won+=1;
+
+    function chek(l) { //verifi si la lettre d'entrée est dans le mot
+        var from = true
+        for (var i = 0; i < rap.length; i++) {
+            if (l == rap[i]) { // si la lettre est bonne
+                var locate = document.getElementsByClassName("n" + i);
+                locate[0].style.backgroundColor = "#66ff99"
+                locate[0].innerHTML = l
+                var calv = document.getElementById(l);
+                calv.style.backgroundColor = "#66FF99";
+                if (document.getElementById("dupli") != l) document.getElementById("dupli").innerHTML += " " + l;
+                from = false;
+                won += 1;
             }
         }
-        if(from){// si ce n'est pas la bonne lettre
-            lose+=1;
-            var d=document.getElementById("img");
-            d.src="./images/pendu_"+lose+".jpg"
-            var calv=document.getElementById(l);
+        if (from) { // si ce n'est pas la bonne lettre
+            lose += 1;
+            var d = document.getElementById("img");
+            d.src = "./images/pendu_" + lose + ".jpg"
+            var calv = document.getElementById(l);
             console.log(l);
-            calv.style.backgroundColor="#FF3333"
-            document.getElementById("dupli").innerHTML+=" !"+l;
+            calv.style.backgroundColor = "#FF3333"
+            document.getElementById("dupli").innerHTML += " !" + l;
         }
-        var doc=document.getElementsByClassName("lert");
-        for(var i =0;i<doc.length;i++){
-            if(doc[i].style.backgroundColor=="#66FF99");
+        var doc = document.getElementsByClassName("lert");
+        for (var i = 0; i < doc.length; i++) {
+            if (doc[i].style.backgroundColor == "#66FF99");
         }
-        if(won===rap.length){//si tu  gagne
-            setTimeout(function(){ alert("bravo tu a deviné le prénom de "+rep);window.location.href='./pendul.html'; }, 500);  
+        if (won === rap.length) { //si tu  gagne
+            setTimeout(function () {
+                alert("bravo tu a deviné le prénom de " + rep);
+                window.location.href = './pendul.html';
+            }, 500);
         }
-        if(lose==9){//si tu perd
-            setTimeout(function(){ alert("perdu ! appuie sur ok pour recommencer.");window.location.href='./pendul.html'; }, 1000);
+        if (lose == 9) { //si tu perd
+            setTimeout(function () {
+                alert("perdu ! appuie sur ok pour recommencer.");
+                window.location.href = './pendul.html';
+            }, 1000);
         }
     }
-    
 </script>
+
 </html>
