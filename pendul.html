@@ -58,7 +58,7 @@
     var won = 0;
     var letr = "abcdefghijklmnopqrstuvwxyz";
     var nom =
-    'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/'; //on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
+        'https://bafybeiaxp3c3npbla44khqbyagwqcbkxxxqjowo6tgnnilfkj2qpu55v5i.ipfs.infura-ipfs.io/'; //on peut remplacer l'adresse http par une adresse locale comme './css-et-js/prenoms-light.json'; 
     var http = new XMLHttpRequest(); //ici on crée une requette de web service
     http.open('GET', nom);
     http.responseType = 'json'; //on lui demande du json en reponse 
@@ -66,7 +66,8 @@
     http.onload = function () { // ici on va utiliser ce qu'on a recu du web service
         liste = http.response; //ici la variable avec tout les noms
         difficulte = prompt(
-        "choisi un niveau de dificulté entre 1 et 3"); //ici on demande le niveaux de dificulté entre 1 et 3 (facile, moyen et difficile)
+            "choisi un niveau de dificulté entre 1 et 3"
+            ); //ici on demande le niveaux de dificulté entre 1 et 3 (facile, moyen et difficile)
         if (difficulte == 1) { //ici un nom de maximum 3 lettres
             console.log("niveau de difficulté : jean-kévin (ovo)");
             rep = liste[rnd(liste.length)]; //on choisi un nom random
@@ -75,8 +76,7 @@
                 rep = liste[rnd(liste.length)];
                 rep = rep.toLowerCase();
             }
-        }
-        if (difficulte == 2) { //ici un nom de maximum 5 lettres
+        } else if (difficulte == 2) { //ici un nom de maximum 5 lettres
             console.log("niveau de difficulté : billy (-_-)");
             rep = liste[rnd(liste.length)];
             rep = rep.toLowerCase();
@@ -84,18 +84,18 @@
                 rep = liste[rnd(liste.length)];
                 rep = rep.toLowerCase();
             }
-        }
-        if (difficulte >= 3) { //ici pas de limite de longueur de nom
-            console.log("niveau de difficulté : virilus (>:-c}");
+        } else if (difficulte >= 3) { //ici pas de limite de longueur de nom
+            console.log("niveau de difficulté : virilus (èoé}");
             rep = liste[rnd(liste.length)];
             rep = rep.toLowerCase();
         } else { //si il n'y a pas de difficulté defini la difficulte par defaut est de niveau 3
-            console.log("niveau de difficulté : virilus (>:-c}");
+            console.log("niveau de difficulté : virilus (èoé}");
             rep = liste[rnd(liste.length)];
             rep = rep.toLowerCase();
         }
         console.log(
-        rep); //ici on ecrit la reponse dans la console (c'est une developer key qui permet de verifier si le code fonctionne dans tout les sens)
+            rep
+            ); //ici on ecrit la reponse dans la console (c'est une developer key qui permet de verifier si le code fonctionne dans tout les sens)
         prep(rep.length);
         for (var i = 0; i < rep
             .length; i++) { //ici on éppele le nom dans un tableau pour vérifier les lettre ds chek()
@@ -127,7 +127,8 @@
     }
 
     function prep(
-    nbn) { //prépare l'html en ajoutant les lettre du clavier visuel et les emplacement pour les lettres du nom a deviner
+        nbn
+        ) { //prépare l'html en ajoutant les lettre du clavier visuel et les emplacement pour les lettres du nom a deviner
         var n = document.getElementById("name");
         for (var i = 0; i < nbn; i++) { //les lettres du nom a deviner
             n.innerHTML += "<div class='n" + i + " lert'>_</div>"
@@ -141,7 +142,8 @@
     }
 
     function input(
-    l) { //verifi si la lettre est in charactere spécial, si oui la change en charactere normale et si elle a deja été entré et l'envoie à chek()
+        l
+        ) { //verifi si la lettre est in charactere spécial, si oui la change en charactere normale et si elle a deja été entré et l'envoie à chek()
         if (l == "é" || l == "è" || l == "ê" || l == "ë") {
             l = "e";
         }
@@ -194,7 +196,7 @@
         for (var i = 0; i < doc.length; i++) {
             if (doc[i].style.backgroundColor == "#66FF99");
         }
-        if (won === rap.length) { //si tu  gagne
+        if (won == rap.length) { //si tu  gagne
             setTimeout(function () {
                 alert("bravo tu a deviné le prénom de " + rep);
                 window.location.href = './pendul.html';
